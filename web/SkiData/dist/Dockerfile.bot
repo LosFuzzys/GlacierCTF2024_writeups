@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/playwright/python:v1.47.0-noble
+USER root
+
+RUN pip install playwright==1.47.0 rq==1.15.1
+RUN playwright install --with-deps chromium
+
+COPY bot.py /app/bot.py
+
+WORKDIR /app
+
+CMD [ "rq", "worker", "--with-scheduler", "--url", "redis://skidata-redis:6379"]

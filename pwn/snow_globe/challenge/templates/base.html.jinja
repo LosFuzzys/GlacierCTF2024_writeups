@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+        {% block head %}
+        <title>Snow Globe</title>
+        <link rel="stylesheet" href="/static/css/snow_globe.css"/>
+        {% endblock %}
+    </head>
+    <body>
+        <div id="content">
+            <h1>Snow Globe</h1>
+
+            {% block body required %}
+            {% endblock %}
+        </div>
+        {% include "snowflakes.html.jinja" %}
+    </body>
+
+</html>

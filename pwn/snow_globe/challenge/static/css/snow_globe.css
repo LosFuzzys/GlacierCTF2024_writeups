@@ -1,0 +1,78 @@
+@font-face {
+    font-family: "Modak";
+    src: url("/static/fonts/Modak-Regular.ttf");
+    font-weight: 900;
+}
+
+* {
+    color: white;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background: rgb(41,93,171);
+    background: linear-gradient(180deg, rgba(41,93,171,1) 5%, rgba(2,0,25,1) 85%); 
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1 {
+    margin-top: 0;
+    font: 7.5em "Modak";
+}
+
+#content {
+    width: fit-content;
+    height: fit-content;
+    
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    margin: auto;
+    background: rgba(100%, 100%, 100%, 50%);
+    backdrop-filter: blur(4px);
+    padding: 2em 15vw;
+    border-radius: 16pt;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5em;
+}
+
+input {
+    margin-bottom: 2em;
+}
+
+input[type="submit"] {
+    color: black;
+    background-color: white;
+    padding: 4pt;
+    border-radius: 16pt;
+    border: 2px outset;
+    transition: background-color 1s;
+}
+
+input[type="submit"]:hover {
+    background-color: cyan;
+}
+
+img {
+    display: block;
+    margin: auto;
+
+    border: 24px whitesmoke outset;
+    padding: 24px;
+    background: white;
+}

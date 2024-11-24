@@ -1,0 +1,24 @@
+name: "${FULLNAME}"
+author: "${AUTHOR}"
+category: "${CATEGORY}"
+
+description: ${DESC}
+
+type: "dynamic"
+value: 500
+extra:
+  initial: 500
+  decay: 50
+  minimum: 50
+
+files:
+  - "${NAME}.tar.gz"
+flags:
+  - "${FLAG}"
+tags:
+  - "${TAG}"
+
+state: "visible"
+version: "0.1"
+
+ops:

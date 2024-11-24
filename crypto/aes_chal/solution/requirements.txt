@@ -1,0 +1,3 @@
+aes-everywhere==1.2.10
+aeskeyschedule==0.0.3
+pycryptodome==3.21.0

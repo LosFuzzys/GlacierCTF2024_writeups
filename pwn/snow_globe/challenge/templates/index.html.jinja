@@ -1,0 +1,11 @@
+{% extends "base.html.jinja" %}
+
+{% block body %}
+    <form method="POST" action="/process" enctype="multipart/form-data">
+        <label for="file">Which image do you want to have placed in the globe?</label>
+        <input id="file" name="file" type="file">
+        <input id="job_id" name="job_id" type="hidden" value="{{job_id}}">
+
+        <input type="submit" value="Construct Globe!">
+    </form>
+{% endblock %}

@@ -1,0 +1,7 @@
+.cache
+challenge
+*.o
+compile_commands.json
+zig-out/
+.zig-cache/
+.direnv/

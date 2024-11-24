@@ -1,0 +1,1 @@
+../challenge/entrypoint.sh

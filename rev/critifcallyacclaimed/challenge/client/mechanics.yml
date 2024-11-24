@@ -1,0 +1,524 @@
+# 0
+- - type: Donut
+    x: 15
+    y: 15
+    size: 12
+    inner_size: 4
+
+# 1
+- - type: Aoe
+    x: 15
+    y: 15
+    size: 8
+
+# 2
+- - type: Laser
+    orientation: 1.5707964
+    offsetx: 0.0
+    offsety: 5.0
+    thickness: 7.0
+  - type: Laser
+    orientation: 1.5707964
+    offsetx: 0.0
+    offsety: 26.0
+    thickness: 7.0
+
+# 3
+- - type: Puddle
+    x: 25
+    y: 25
+    size: 11
+    duration: 1
+  - type: Puddle
+    x: 25
+    y: 5
+    size: 11
+    duration: 1
+
+# 4
+- - type: Wind
+    orientation: 0.2617994
+  - type: Tower
+    x: 29
+    y: 15
+
+# 5
+- - type: Cleave
+    orientation: 0.0
+    start: 21
+    end: 32
+  - type: Raidwide
+    damage: 80
+
+# 6
+- - type: Aoe
+    x: 25
+    y: 25
+    size: 15
+  - type: Aoe
+    x: 5
+    y: 5
+    size: 15
+  - type: Gaze
+    x: 5
+    y: 26
+
+# 7
+- - type: Aoe
+    x: 25
+    y: 5
+    size: 15
+  - type: Aoe
+    x: 5
+    y: 25
+    size: 15
+  - type: Raidwide
+    damage: 80
+
+# 8
+- - type: Pyretic
+
+# 9
+- - type: Puddle
+    x: 5
+    y: 5
+    size: 8
+    duration: 7
+  - type: Tower
+    x: 23
+    y: 23
+  - type: Pyretic
+
+# 10
+- - type: Puddle
+    x: 15
+    y: 5
+    size: 8
+    duration: 7
+
+# 11
+- - type: Puddle
+    x: 25
+    y: 5
+    size: 8
+    duration: 7
+
+# 12
+- - type: Puddle
+    x: 25
+    y: 15
+    size: 8
+    duration: 7
+
+# 13
+- - type: Puddle
+    x: 25
+    y: 25
+    size: 8
+    duration: 7
+
+# 14
+- - type: Puddle
+    x: 15
+    y: 25
+    size: 8
+    duration: 7
+
+# 15
+- - type: Puddle
+    x: 5
+    y: 25
+    size: 8
+    duration: 7
+
+# 16
+- - type: Puddle
+    x: 5
+    y: 15
+    size: 8
+    duration: 7
+  - type: Donut
+    x: 15
+    y: 15
+    size: 40
+    inner_size: 7
+
+# 17
+- - type: Puddle
+    x: 15
+    y: 15
+    size: 8
+    duration: 7
+
+# 18
+- []
+
+# 19
+- - type: Flare
+    x: 5
+    y: 5
+  - type: Gaze
+    x: 30
+    y: 5
+
+# 20
+- - type: Raidwide
+    damage: 50
+
+# 21
+- []
+
+# 22
+- - type: Raidwide
+    damage: 10
+
+# 23
+- - type: Raidwide
+    damage: 15
+
+# 24
+- - type: Raidwide
+    damage: 20
+
+# 25
+- - type: Raidwide
+    damage: 20
+  - type: Cleave
+    orientation: 0.0
+    start: 5
+    end: 32
+  - type: Cleave
+    orientation: 4.712389
+    start: 0
+    end: 29
+
+# 26
+- - type: Raidwide
+    damage: 70
+
+# 27
+- - type: Raidwide
+    damage: 90
+  - type: Cleave
+    orientation: 0.0
+    start: 0
+    end: 20
+
+# 28
+- - type: Pyretic
+
+# 29
+- - type: Raidwide
+    damage: 150
+
+# 30
+- - type: Aoe
+    x: 3
+    y: 30
+    size: 5
+  - type: Aoe
+    x: 15
+    y: 30
+    size: 5
+  - type: Aoe
+    x: 27
+    y: 30
+    size: 5
+
+# 31
+- - type: Aoe
+    x: 3
+    y: 23
+    size: 5
+  - type: Aoe
+    x: 15
+    y: 23
+    size: 5
+  - type: Aoe
+    x: 27
+    y: 23
+    size: 5
+
+# 32
+- - type: Aoe
+    x: 3
+    y: 16
+    size: 5
+  - type: Aoe
+    x: 15
+    y: 16
+    size: 5
+  - type: Aoe
+    x: 27
+    y: 16
+    size: 5
+  - type: Aoe
+    x: 8
+    y: 30
+    size: 5
+  - type: Aoe
+    x: 21
+    y: 30
+    size: 5
+
+# 33
+- - type: Aoe
+    x: 3
+    y: 9
+    size: 5
+  - type: Aoe
+    x: 15
+    y: 9
+    size: 5
+  - type: Aoe
+    x: 27
+    y: 9
+    size: 5
+  - type: Aoe
+    x: 8
+    y: 23
+    size: 5
+  - type: Aoe
+    x: 21
+    y: 23
+    size: 5
+
+# 34
+- - type: Aoe
+    x: 3
+    y: 2
+    size: 5
+  - type: Aoe
+    x: 15
+    y: 2
+    size: 5
+  - type: Aoe
+    x: 27
+    y: 2
+    size: 5
+  - type: Aoe
+    x: 8
+    y: 16
+    size: 5
+  - type: Aoe
+    x: 21
+    y: 16
+    size: 5
+
+# 35
+- - type: Aoe
+    x: 8
+    y: 9
+    size: 5
+  - type: Aoe
+    x: 21
+    y: 9
+    size: 5
+
+# 36
+- - type: Aoe
+    x: 8
+    y: 2
+    size: 5
+  - type: Aoe
+    x: 21
+    y: 2
+    size: 5
+
+# 37
+- - type: Gaze
+    x: 24
+    y: 27
+  - type: Laser
+    orientation: 0.2617994
+    offsetx: 2.0
+    offsety: 5.0
+    thickness: 7.0
+  - type: Laser
+    orientation: 1.8325958
+    offsetx: 0.0
+    offsety: -3.0
+    thickness: 7.0
+  - type: Laser
+    orientation: 3.4033923
+    offsetx: 26.0
+    offsety: 28.0
+    thickness: 7.0
+  - type: Laser
+    orientation: 4.974189
+    offsetx: -39.0
+    offsety: 15.0
+    thickness: 7.0
+
+# 38
+- - type: Laser
+    orientation: 0.7853982
+    offsetx: 37.0
+    offsety: -5.0
+    thickness: 7.0
+  - type: Laser
+    orientation: 2.3561945
+    offsetx: 7.0
+    offsety: 7.0
+    thickness: 7.0
+
+# 39
+- - type: Cleave
+    orientation: 1.5707964
+    start: 16
+    end: 32
+  - type: Gaze
+    x: 25
+    y: 3
+
+# 40
+- - type: Laser
+    orientation: 6.2831855
+    offsetx: 15.0
+    offsety: -35.0
+    thickness: 10.0
+
+# 41
+- - type: Cleave
+    orientation: 0.0
+    start: 0
+    end: 10
+  - type: Cleave
+    orientation: 0.0
+    start: 21
+    end: 32
+
+# 42
+- - type: Flare
+    x: 2
+    y: 2
+  - type: Flare
+    x: 29
+    y: 2
+  - type: Flare
+    x: 2
+    y: 29
+
+# 43
+- []
+
+# 44
+- - type: Donut
+    x: 15
+    y: 15
+    size: 32
+    inner_size: 8
+
+# 45
+- - type: Laser
+    orientation: 0.5235988
+    offsetx: 2.0
+    offsety: 5.0
+    thickness: 2.0
+  - type: Laser
+    orientation: 0.5235988
+    offsetx: 7.0
+    offsety: 10.0
+    thickness: 2.0
+  - type: Laser
+    orientation: 0.5235988
+    offsetx: 12.0
+    offsety: 15.0
+    thickness: 2.0
+  - type: Laser
+    orientation: 0.5235988
+    offsetx: 17.0
+    offsety: 20.0
+    thickness: 2.0
+  - type: Laser
+    orientation: 0.5235988
+    offsetx: 22.0
+    offsety: 27.0
+    thickness: 2.0
+  - type: Laser
+    orientation: 0.5235988
+    offsetx: 27.0
+    offsety: 30.0
+    thickness: 2.0
+
+# 46
+- - type: Laser
+    orientation: 1.0471976
+    offsetx: 2.0
+    offsety: 5.0
+    thickness: 2.0
+  - type: Laser
+    orientation: 1.0471976
+    offsetx: 7.0
+    offsety: 10.0
+    thickness: 2.0
+  - type: Laser
+    orientation: 1.0471976
+    offsetx: 12.0
+    offsety: 15.0
+    thickness: 2.0
+  - type: Laser
+    orientation: 1.0471976
+    offsetx: 17.0
+    offsety: 20.0
+    thickness: 2.0
+  - type: Laser
+    orientation: 1.0471976
+    offsetx: 22.0
+    offsety: 27.0
+    thickness: 2.0
+  - type: Laser
+    orientation: 1.0471976
+    offsetx: 27.0
+    offsety: 30.0
+    thickness: 2.0
+
+# 47
+- - type: Donut
+    x: 0
+    y: 0
+    size: 40
+    inner_size: 30
+  - type: Donut
+    x: 0
+    y: 31
+    size: 40
+    inner_size: 30
+  - type: Donut
+    x: 31
+    y: 31
+    size: 40
+    inner_size: 30
+  - type: Donut
+    x: 31
+    y: 0
+    size: 40
+    inner_size: 30
+
+# 48
+- - type: Wind
+    orientation: 0.43633232
+  - type: Aoe
+    x: 15
+    y: 15
+    size: 8
+  - type: Raidwide
+    damage: 40
+
+# 49
+- - type: Cleave
+    orientation: 0.0
+    start: 0
+    end: 9
+  - type: Cleave
+    orientation: 0.0
+    start: 22
+    end: 32
+  - type: Raidwide
+    damage: 40
+
+# 50 (game over)
+- - type: Enrage
+
+- - type: Raidwide # Just in case ;)
+    damage: 3000

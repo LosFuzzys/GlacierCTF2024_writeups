@@ -1,0 +1,23 @@
+[Unit]
+Description=Challenge ${NAME}
+
+[Container]
+Image=${REGISTRY}/${NAME}
+PublishPort=${PUBPORT}:${PORT}
+Environment=PORT=${PORT}
+Environment=HOST=${HOST}
+Environment=TIMEOUT=${TIMEOUT}
+
+# SCARY part
+# Remember that the docker container wouldn't be the security mechanism here
+# (just an abstraction). nsjail is the responsible for isolating the challenge
+# If you disabled nsjail this should be removed
+AddCapability=CAP_SYS_ADMIN
+Unmask=all
+SecurityLabelDisable=true
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

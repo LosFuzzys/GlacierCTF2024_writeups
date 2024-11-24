@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SolveApp</string>
+    <string name="title_activity_receive_uri">ReceiveURI</string>
+</resources>

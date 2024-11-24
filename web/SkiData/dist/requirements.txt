@@ -1,0 +1,8 @@
+Flask==3.0.3
+Flask-Login==0.6.3
+Flask-SQLAlchemy==3.1.1
+pycel==1.0b30
+Jinja2==3.1.3
+playwright==1.47.0
+redis==5.1.1
+rq==1.16.2

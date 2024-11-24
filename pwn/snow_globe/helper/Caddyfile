@@ -1,0 +1,10 @@
+{
+	http_port 8080
+	https_port 8081
+	auto_https off
+}
+
+# Ignore
+http://123981239081231283901283091023.localhost:8080 {
+	reverse_proxy http://127.0.0.1:8080
+}

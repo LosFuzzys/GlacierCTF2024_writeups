@@ -1,0 +1,62 @@
+Next Steps:
+- Server:
+    - Encryption and decryption
+    - Check for scaling
+    - Attestation aka get API Key and Signature (POC exists)
+- Android App
+    - Send files to server
+        - For encryption
+        - Decryption
+        - Refactor if enough time because 
+            - Decrypt and uploadFile essentially do the same
+            - Check formats
+    - Remove trust insecure in Manifest
+    - File creation for secret
+    - Signing (https://chatgpt.com/c/6713e2b9-2654-800d-8dac-13af6705f953)
+    - Disable debugging
+    - Obfuscation but give stripped down info
+    - If possible encrypt everything and decrypt during runtime
+
+    - Maybe skip:
+        
+        - Certificate Pinning
+
+- Solution Script:
+    - Fix name and content
+    - Automate 
+
+
+
+Next time:
+- Sign App (todo)
+- build cut down source code for challenge publishing? (todo)
+- Solve script and writeup (cut down version)
+
+Before Publishing:
+- Certificate Pinning
+- Adapt keys
+- Signature
+- URL for access to server
+- Remove insecure stuff in manifest
+
+
+If enough time:
+    - Fix async requestsopy
+    - Delete files
+
+
+How to annoy:
+- Root Chek lib
+- Root check mine
+- Signature check
+- frida check
+- android.os.Debug.isDebuggerConnected() || android.os.Debug.waitingForDebugger()
+ if (utils.init1() || !utils.init2()) {
+
+
+
+FINAL TODOs:
+- Enabel Certificate Pinning and Test
+- Change/Enable signature
+    - Webserver
+    - Solve

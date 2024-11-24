@@ -1,0 +1,20 @@
+diff -Naur a/mm/memory.c b/mm/memory.c
+--- a/mm/memory.c	2024-10-17 15:08:39.000000000 +0200
++++ b/mm/memory.c	2024-10-27 14:41:06.477944638 +0100
+@@ -3158,6 +3158,8 @@
+ 	if (PageAnon(vmf->page)) {
+ 		struct page *page = vmf->page;
+ 
++		if (PageKsm(page))
++			goto fini;
+ 		/* PageKsm() doesn't necessarily raise the page refcount */
+ 		if (PageKsm(page) || page_count(page) != 1)
+ 			goto copy;
+@@ -3173,6 +3175,7 @@
+ 		 * it's dark out, and we're wearing sunglasses. Hit it.
+ 		 */
+ 		unlock_page(page);
++fini:
+ 		wp_page_reuse(vmf);
+ 		return VM_FAULT_WRITE;
+ 	} else if (unlikely((vma->vm_flags & (VM_WRITE|VM_SHARED)) ==

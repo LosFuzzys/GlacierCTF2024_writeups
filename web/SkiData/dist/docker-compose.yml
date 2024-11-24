@@ -1,0 +1,28 @@
+services:
+  redis:
+    container_name: skidata-redis
+    image: "redis:7-alpine"
+
+  web:
+    container_name: skidata-web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ADMIN_USER=gctf{FAKE_FAKE_FAKE}
+      - ADMIN_PASSWORD=.FakePW69!
+      - WEB_URL=http://skidata-web:5000
+      - REDIS_HOST=skidata-redis
+    ports:
+        - "1337:5000"
+    depends_on:
+      - redis
+
+  bot:
+    container_name: skidata-bot
+    build:
+      context: .
+      dockerfile: Dockerfile.bot
+    shm_size: 2gb
+    depends_on:
+      - redis

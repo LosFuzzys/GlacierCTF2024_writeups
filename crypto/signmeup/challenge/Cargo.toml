@@ -1,0 +1,12 @@
+[package]
+name = "signmeup"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+curve25519-dalek = "4.1.2"
+digest = "0.10.7"
+ed25519-dalek = { version = "2.1.1", features = ["hazmat"] }
+hex = "0.4.3"
+rand = "0.8.5"
+sha1 = "0.10.6"

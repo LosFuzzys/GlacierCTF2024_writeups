@@ -1,0 +1,8 @@
+.cache
+challenge
+*.o
+compile_commands.json
+pyrightconfig.json
+build
+
+.direnv

@@ -1,0 +1,13 @@
+| sample_id | sample_name       | md5_hash                        | description                        | threat_level | timestamp          |
+|----------|-------------------|--------------------------------|------------------------------------|--------------|---------------------|
+| 18       | Storm Worm        | ebe474f19d0572b0e4580f2822b2b345 | Notorious email worm               | High         | 2023-10-25 08:30:00 |
+| 19       | Gameover Zeus     | 53b888f8426d55d8f6e4df19d91f187a | Banking Trojan and botnet         | High         | 2023-10-25 09:15:00 |
+| 20       | Slingshot         | 4f9e097b8561e35e9e7eac93316c76c75 | Sophisticated APT malware         | Critical     | 2023-10-25 10:45:00 |
+| 21       | IcedID            | 8ae29e23b317f67d2b84451a292937e2 | Banking Trojan                     | High         | 2023-10-25 11:20:00 |
+| 22       | DarkTequila        | 17ac0ff0ea3e06e1383da2f29a2490f2 | Banking Trojan targeting Mexico   | High         | 2023-10-25 12:10:00 |
+| 23       | Slammer            | 967a57f74615c49b768636f54d82be676 | SQL worm that caused network havoc | High         | 2023-10-25 13:45:00 |
+| 24       | Mytob              | 8b8332e7a9491b4d4f69a41f86557f56 | Email worm with backdoor           | Medium       | 2023-10-25 14:30:00 |
+| 25       | Gameover Zeus     | a3d168bb7b3c6a80e94c1534d30a0665 | Banking Trojan and botnet         | High         | 2023-10-25 15:15:00 |
+| 26       | WannaCry          | b701c36a1ef038a4d54e6cc3b697a0a7 | Ransomware that affected Windows   | High         | 2023-10-25 16:00:00 |
+| 27       | Blaster            | 35b60d6a3b37b097e376a56d7c262ce2 | Worm that exploited Windows flaws | High         | 2023-10-25 17:30:00 |
+| 28       | ILOVEYOU          | d44e7fc48e29c6d5c8c154c957aae936 | Infamous email worm                | High         | 2023-10-25 18:15:00 |

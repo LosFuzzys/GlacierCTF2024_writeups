@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">IcySlide</string>
+    <string name="title_create_new_file_activity">New File Creation</string>
+    <string name="title_view_file_activity">View Files</string>
+</resources>

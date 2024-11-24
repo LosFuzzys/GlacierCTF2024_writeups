@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cat /dev/sdc > /flag.txt
+chown root:root /flag.txt
+chmod 400 /flag.txt

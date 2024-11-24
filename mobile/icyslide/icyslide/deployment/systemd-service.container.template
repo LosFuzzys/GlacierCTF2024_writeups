@@ -1,0 +1,15 @@
+[Unit]
+Description=Challenge ${NAME}
+
+[Container]
+Image=${REGISTRY}/${NAME}
+PublishPort=${PUBPORT}:${PORT}
+Environment=PORT=${PORT}
+Environment=HOST=${HOST}
+Environment=TIMEOUT=${TIMEOUT}
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

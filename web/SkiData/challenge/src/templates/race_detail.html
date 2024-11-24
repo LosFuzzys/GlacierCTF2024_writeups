@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container mt-5">
+        <h2>{{ race.race_name }}</h2>
+
+        <!-- Display the race comment if it exists -->
+        {% if race.comment %}
+            <p class="text-muted"><em>{{ race.comment }}</em></p>
+        {% endif %}
+
+        <!-- Race Results Table -->
+        <div class="mt-4">
+            <h4>Race Results</h4>
+            <table class="table table-bordered table-striped mt-3">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Time</th>
+                    <th>Rank</th>
+                    <th>Country</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for result in race.results %}
+                    <tr>
+                        <td>{{ result.name }}</td>
+                        <td>{{ result.time }}</td>
+                        {% if loop.index <= 3 %}
+                            <td>
+                                <img {{ style(result.rank)|xmlattr }}  alt="rank-img"/></td>
+                        {% else %}
+                            <td>{{ result.rank }}</td>
+                        {% endif %}
+                        <td>{{ result.country }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">No race results available</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="{{ url_for('my_races') }}" class="btn btn-secondary mt-3">Back to My Races</a>
+        <a href="{{ url_for('race_report', race_id=race.id)}}" class="btn btn-primary mt-3">Report to Admin</a>
+    </div>
+{% endblock %}

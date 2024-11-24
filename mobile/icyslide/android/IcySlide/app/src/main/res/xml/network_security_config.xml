@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">icyslide.web.glacierctf.com</domain>
+        <pin-set expiration="2025-02-20">
+            <pin digest="SHA-256">Y8C98GuiQ4FpwdLRODo8myrRMEBOC4VAErnaUEQWfQw=</pin>
+            <pin digest="SHA-256">K7rZOrXHknnsEhUH8nLL4MZkejquUuIvOIr6tCa0rbo=</pin>
+            <pin digest="SHA-256">C5+lpZ7tcVwmwQIMcRtPbsQtWLABXhQzejna0wHFr8M=</pin>
+        </pin-set>
+    </domain-config>
+</network-security-config>

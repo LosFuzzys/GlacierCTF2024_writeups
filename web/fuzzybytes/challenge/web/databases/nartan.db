@@ -1,0 +1,13 @@
+| sample_id | sample_name       | md5_hash                        | description                        | threat_level | timestamp          |
+|----------|-------------------|--------------------------------|------------------------------------|--------------|---------------------|
+| 51       | Blaster            | 6e6e6d2a6bbb3a3c6b8f7a2a3c92a72f | Worm that exploited Windows flaws | High         | 2023-10-28 08:30:00 |
+| 52       | Mydoom            | 8e6e6d2a6bbc3a3c6b8f7e2a3d22a22f | Worm that spreads via email        | Medium       | 2023-10-28 09:15:00 |
+| 53       | Code Red          | 9e6e6d2a6bbd3a3c6a8f7a2a3c92a32f | Worm exploiting IIS vulnerabilities | High         | 2023-10-28 10:45:00 |
+| 54       | IcedID            | ae6e6d2a6bbe3a3c6c8f8a2a3a92a92f | Banking Trojan                     | High         | 2023-10-28 11:20:00 |
+| 55       | CryptoLocker      | be6e6d2a6bbf3a3c6a8f7e6a7f12a22f | Ransomware that encrypts files     | Critical     | 2023-10-28 12:10:00 |
+| 56       | Gameover Zeus     | ce6e6d2a6bc03a3c6b8f7a2a3c92a42f | Banking Trojan and botnet         | High         | 2023-10-28 13:45:00 |
+| 57       | DarkTequila        | de6e6d2a6bc13a3c6b8f7e2a3d22a52f | Banking Trojan targeting Mexico   | High         | 2023-10-28 14:30:00 |
+| 58       | Slammer            | ee6e6d2a6bc23a3c6b8f7a2a3c92a62f | SQL worm that caused network havoc | High         | 2023-10-28 15:15:00 |
+| 59       | Sasser            | fe6e6d2a6bc33a3c6a8f7a2a3c92a82f | Worm that targeted Windows systems | High         | 2023-10-28 16:00:00 |
+| 60       | Stuxnet            | 0f7e6d2a6bc43a3c6b8f7e2a3d22a12f | Worm designed to disrupt industrial systems | Critical | 2023-10-28 17:30:00 |
+| 61       | Emotet            | 1f7e6d2a6bc53a3c6c8f8a2a3a92a32f | Malware delivery service           | High         | 2023-10-28 18:15:00 |

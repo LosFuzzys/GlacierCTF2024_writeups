@@ -1,0 +1,30 @@
+{% block nav %}
+    <nav class="navbar navbar-expand navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                SkiData<i class="fa fa-trademark" aria-hidden="true"></i>
+            </a>
+
+            <!-- Right-aligned links: -->
+            <ul class="navbar-nav ms-auto">
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item" value="{{ current_user.username }}">
+                        <span class="navbar-text me-3">
+                            Hello, {{ current_user.username }}!
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light me-2" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="{{ url_for('register') }}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+{% endblock %}

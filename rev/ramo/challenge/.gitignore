@@ -1,0 +1,5 @@
+.cache
+challenge
+*.o
+compile_commands.json
+__pycache__

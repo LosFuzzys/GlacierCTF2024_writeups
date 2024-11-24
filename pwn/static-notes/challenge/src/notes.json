@@ -1,0 +1,27 @@
+{
+  "size": 4,
+  "entries": [
+    {
+      "title": "GlacierCTF2024!",
+      "content": "The third iteraton of GlacierCTF, organized by @Orga@"
+    },
+    {
+      "title": "GlacierCTF2023!",
+      "content": "The second iteraton of GlacierCTF, organized by @Orga@"
+    },
+    {
+      "title": "GlacierCTF2022!",
+      "content": "The first iteraton of GlacierCTF, organized by @Orga@"
+    },
+    {
+      "title": "About this notes APP",
+      "content": "This notes app was built by @Author@ and last updated on @LastUpdate@"
+    }
+  ],
+  "enable_substitutions": true,
+  "substitutions": {
+    "Author": "PaideiaDilemma",
+    "LastUpdate": "22.11.2024 11:22",
+    "Orga": "LosFuzzys"
+  }
+}

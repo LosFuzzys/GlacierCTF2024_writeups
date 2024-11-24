@@ -1,0 +1,19 @@
+| sample_id | sample_name       | md5_hash                        | description                        | threat_level | timestamp          |
+|----------|-------------------|--------------------------------|------------------------------------|--------------|---------------------|
+| 1        | WannaCry          | d0ac1ea3a0573f1a74fb6076f67dd181 | Ransomware that affected Windows   | High         | 2023-10-24 08:30:00 |
+| 2        | Zeus              | b84a47f292994b95b06e38767be6a9e7 | Banking Trojan targeting Windows   | High         | 2023-10-24 09:15:00 |
+| 3        | Mydoom            | 3a587e84514d9c417c72c71ef4d204c2c | Worm that spreads via email        | Medium       | 2023-10-24 10:45:00 |
+| 4        | CryptoLocker      | f7e3a192baec85b378a2b083f57925dd | Ransomware that encrypts files     | Critical     | 2023-10-24 11:20:00 |
+| 5        | Conficker         | 1e43113f684c5b982ce8709b88f9f08c | Worm that exploits Windows flaws   | High         | 2023-10-24 12:10:00 |
+| 6        | ILOVEYOU          | 19b9d788d81b2d8a138b91ee2f83a78d | Infamous email worm                | High         | 2023-10-24 13:45:00 |
+| 7        | Blaster            | 847378d8efea58a07e049a07552c8c6d | Worm that exploited Windows flaws | High         | 2023-10-24 14:30:00 |
+| 8        | Sasser            | 6a2e5b4e5a1d4ea9b1b7a7069e4b0a69 | Worm that targeted Windows systems | High         | 2023-10-24 15:15:00 |
+| 9        | Melissa            | 6f3f73f70a32cf5e05e03d91a8f33e44 | Notorious email virus              | Medium       | 2023-10-24 16:00:00 |
+| 10       | Stuxnet            | 2ea15aa33002a6c3945d0d4bfa15f455 | Worm designed to disrupt industrial systems | Critical | 2023-10-24 17:30:00 |
+| 11       | Slammer            | e95cfb432c35bf22717c7f3744f9ce72 | Rapid-spreading SQL worm           | High         | 2023-10-24 18:15:00 |
+| 12       | Code Red          | a87c3d5f563978f11ea7b9480efb94e80 | Worm exploiting IIS vulnerabilities | High         | 2023-10-24 19:00:00 |
+| 13       | Nimda              | 4f0ecb6e03b5d0f55d52de4d40d414a0 | Multi-vector worm                  | High         | 2023-10-24 20:00:00 |
+| 14       | IcedID            | 7af1c693cb4d45a96b4e2b9b361019f3 | Banking Trojan                     | High         | 2023-10-24 21:00:00 |
+| 15       | Emotet            | a9b6f69e2df1bcf5a309b557e3bc83d6 | Malware delivery service           | High         | 2023-10-24 22:00:00 |
+| 16       | Sodinokibi        | 73c64a0594b497c7b0e9382f3a24ed93 | Ransomware-as-a-Service            | Critical     | 2023-10-24 23:00:00 |
+| 17       | Ramnit            | c44d88799dd61d920f31f7439c91ef7d | Banking Trojan and botnet         | High         | 2023-10-24 23:59:59 |

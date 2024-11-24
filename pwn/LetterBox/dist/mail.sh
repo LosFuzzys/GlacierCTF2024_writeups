@@ -1,0 +1,1 @@
+../challenge/mail.sh

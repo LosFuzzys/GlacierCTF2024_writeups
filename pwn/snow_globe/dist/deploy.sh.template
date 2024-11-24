@@ -1,0 +1,60 @@
+#!/bin/sh
+
+check() {
+  echo -e "\e[1;34m[+] Verifying Challenge Integrity\e[0m"
+  sha256sum -c sha256sum
+}
+
+build_container() {
+  echo -e "\e[1;34m[+] Building Challenge Docker Container\e[0m"
+  docker build -t localhost/chall-${NAME} --platform linux/amd64 .
+}
+
+# Common error on default Ubuntu 24.04:
+# 
+# initCloneNs():391 mount('/', '/', NULL, MS_REC|MS_PRIVATE, NULL): Permission denied
+# Change --user 1337:1337 to --user 0:0 in run_container()
+# or
+# $ sudo sysctl -w kernel.apparmor_restrict_unprivileged_unconfined=0
+# $ sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+# and then restore them back when finished
+
+run_container() {
+  docker volume create --driver local --opt type=tmpfs --opt device=tmpfs --opt o=size=16M,rw store-${NAME}
+  docker network create --driver bridge --internal network_${NAME}
+  docker run --name chall-${NAME} --read-only --network network_${NAME} --mount source=store-${NAME},destination=/tmp --rm -it -d localhost/chall-${NAME}
+
+  CONTAINER_IP="§(docker inspect chall-${NAME} --format '{{ .NetworkSettings.Networks.network_${NAME}.IPAddress }}')"
+  echo -e "\e[1;34m[+] Running Challenge Docker Container on http://§{CONTAINER_IP}:${PORT}\e[0m"
+
+  docker attach chall-${NAME}
+}
+
+kill_container() {
+	docker ps --filter "name=chall-${NAME}" --format "{{.ID}}" \
+		| tr '\n' ' ' \
+		| xargs docker stop -t 0 \
+		|| true
+	docker network rm network_${NAME}
+	docker volume rm store-${NAME}
+}
+
+case "${1}" in
+  "check")
+    check
+    ;;
+  "build")
+    build_container
+    ;;
+  "run")
+    run_container
+    ;;
+  "kill")
+    kill_container
+    ;;
+  *)
+    check
+    build_container
+    run_container
+    ;;
+esac

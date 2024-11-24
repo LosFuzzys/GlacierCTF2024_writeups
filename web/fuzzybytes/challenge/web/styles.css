@@ -1,0 +1,251 @@
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.header-content {
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.virus-icon {
+    font-size: 48px;
+    margin-right: 10px;
+    color: #f44336;
+}
+
+h1 {
+    font-size: 36px;
+    color: #333;
+    margin: 0;
+}
+
+.cyber-text {
+    color: #2196F3;
+}
+
+.cyber-graphics {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.cyber-graphics i {
+    font-size: 36px;
+    margin: 0 10px;
+    color: #2196F3;
+}
+
+nav ul {
+    background-color: #333;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #2196F3;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #f44336;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #2196F3;
+}
+
+p {
+    line-height: 1.5;
+    color: #333;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.database-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.database-icon {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #2196F3;
+}
+
+.database-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.database-link:hover {
+    color: #f44336;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    margin-top: 20px;
+    border-top: 1px solid #555;
+}
+
+footer a {
+    text-decoration: none;
+    color: #2196F3;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #f44336;
+}
+
+
+.upload-form {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.upload-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.upload-form input[type="file"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.upload-button {
+    background-color: #2196F3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #f44336;
+}
+
+.beautiful-list {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+/* styles.css */
+
+/* Style the form container */
+.modern-contact-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Style form groups (form fields) */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Style labels */
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style input and textarea fields */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the submit button */
+.form-group button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Add hover effect to the submit button */
+.form-group button:hover {
+    background-color: #0056b3;
+}
+
+/* Style for the log */
+#log {
+    background-color: #000;
+    color: #00FF00;
+    font-family: monospace;
+    padding: 10px;
+    border: 1px solid #00FF00;
+    margin: 20px 0;
+    white-space: pre-wrap;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Style for the back button with the class "back-button" */
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0074D9;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.back-button:hover {
+    background-color: #0056A7;
+}

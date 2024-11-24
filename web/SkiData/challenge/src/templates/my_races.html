@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="container mt-5">
+    <h2>My Races</h2>
+    <form method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="race_name" class="form-label">Race Name</label>
+        <input type="text" class="form-control" id="race_name" name="race_name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="comment" class="form-label">Comment</label>
+        <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Optional comment about the race..."></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="file" class="form-label">Upload Excel File</label>
+        <input type="file" class="form-control" id="file" name="file" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Upload Race</button>
+    </form>
+
+    <h3 class="mt-5">Uploaded Races</h3>
+    <ul class="list-group">
+      {% for race in races %}
+        <li class="list-group-item">
+          <a href="{{ url_for('race_detail', race_id=race.id) }}">{{ race.race_name }}</a>
+          {% if race.comment %}
+            <p class="mb-0"><small>{{ race.comment }}</small></p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html.jinja" %}
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <h2>Failed to process the image:</h2>
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% if img_job %}
+    <h2>Here's your snow globe:</h2>
+    <img src="{{ url_for("static", filename="results/"+img_job) }}">
+{% endif %}
+
+{% endblock %}

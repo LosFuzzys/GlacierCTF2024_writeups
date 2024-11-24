@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cat /dev/sdb > /home/user/.ssh/authorized_keys
+chown user:user /home/user/.ssh/authorized_keys
+chmod 600 /home/user/.ssh/authorized_keys

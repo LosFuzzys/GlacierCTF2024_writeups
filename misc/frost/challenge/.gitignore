@@ -1,0 +1,4 @@
+.cache
+*.o
+compile_commands.json
+__pycache__

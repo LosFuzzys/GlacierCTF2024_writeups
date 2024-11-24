@@ -1,0 +1,20 @@
+[Unit]
+Description=Challenge ${NAME}
+
+[Container]
+Image=${REGISTRY}/${NAME}
+PublishPort=${PUBPORT}:${PORT}
+PublishPort=${PUBPORT_HTTP}:${HTTP_PORT}
+Environment=PORT=${PORT}
+Environment=HOST=${HOST}
+Environment=HTTP_PORT=${HTTP_PORT}
+Environment=TIMEOUT=${TIMEOUT}
+Environment=SHARED_SECRET=${SHARED_SECRET}
+Environment=PER_SOURCE=${PER_SOURCE}
+Environment=PUBLIC_IP=${PUBLIC_IP}
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

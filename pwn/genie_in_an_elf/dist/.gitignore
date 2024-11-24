@@ -1,0 +1,6 @@
+challenge
+*.tar.gz
+sha256sum
+deploy.sh
+libc.so.6
+ld-linux-*

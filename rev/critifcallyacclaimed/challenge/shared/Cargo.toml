@@ -1,0 +1,12 @@
+[package]
+name = "critically_acclaimed_lib"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1.0.215", features = ["derive"], optional = true }
+
+[features]
+debug = []
+serialize = ["dep:serde"]
+deserialize = ["dep:serde"]
